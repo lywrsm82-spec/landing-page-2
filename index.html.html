@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#5c403d",
+                        "secondary": "#c8c6c5",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-primary-fixed": "#410003",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#313030",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "on-primary": "#680008",
+                        "on-tertiary-container": "#4c3f00",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#ffdad6",
+                        "inverse-primary": "#be0a1a",
+                        "on-primary-container": "#5c0006",
+                        "tertiary-fixed": "#ffe16d",
+                        "outline": "#ac8885",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "background": "#131313",
+                        "on-surface-variant": "#e5bdb9",
+                        "on-primary-fixed-variant": "#930010",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#ffb3ac",
+                        "primary": "#ffb3ac",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary": "#3a3000",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "on-tertiary-fixed": "#221b00",
+                        "surface": "#131313",
+                        "inverse-on-surface": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#474746",
+                        "tertiary": "#e9c400",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#c9a900",
+                        "surface-dim": "#131313",
+                        "primary-container": "#ff544e",
+                        "brand-red": "#EF3737"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .headline-font { font-family: 'Space Grotesk', sans-serif; }
+        .velvet-glow {
+            box-shadow: 0 0 50px -12px rgba(239, 55, 55, 0.3);
+        }
+        .diagonal-pattern {
+            background-image: repeating-linear-gradient(45deg, rgba(239, 55, 55, 0.05) 0, rgba(239, 55, 55, 0.05) 1px, transparent 0, transparent 50%);
+            background-size: 10px 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        #side-drawer {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #side-drawer.closed {
+            transform: translateX(100%);
+        }
+        .premium-btn-glow:active {
+            box-shadow: 0 0 25px rgba(239, 55, 55, 0.5);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-brand-red selection:text-white" data-mode="connect">
+<!-- Side Drawer -->
+<div class="fixed inset-0 bg-black/80 z-[60] hidden transition-opacity duration-300 backdrop-blur-sm" id="drawer-overlay"></div>
+<div class="fixed top-0 right-0 h-full w-full max-w-[300px] bg-surface-container-lowest z-[70] closed shadow-2xl p-6 flex flex-col gap-6" id="side-drawer">
+<div class="flex justify-between items-center pb-4 border-b border-white/10">
+<span class="text-xl font-bold text-[#EF3737] headline-font">7XL MENU</span>
+<button class="text-white p-2" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 text-lg headline-font overflow-y-auto">
+<a class="text-white active:text-[#EF3737] transition-colors py-4 border-b border-white/5 flex items-center gap-3" href="https://7xlagents.com/registration/?agent=ag1230" target="_blank">
+<span class="material-symbols-outlined text-[#EF3737]">play_circle</span>
+                הצטרפות לטורניר
+            </a>
+<a class="text-white active:text-[#EF3737] transition-colors py-4 border-b border-white/5 flex items-center gap-3" href="https://wa.me/972553021464" target="_blank">
+<span class="material-symbols-outlined text-[#EF3737]">support_agent</span>
+                תמיכה בשידור חי
+            </a>
+<a class="text-white active:text-[#EF3737] transition-colors py-4 border-b border-white/5 flex items-center gap-3" href="#VIP-Club-Section" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-[#EF3737]">star</span>
+                הטבות VIP
+            </a>
+<div class="py-6 space-y-4">
+<span class="text-xs text-gray-500 uppercase tracking-widest font-bold block">הורדת האפליקציה</span>
+<div class="grid grid-cols-1 gap-3">
+<a class="flex items-center gap-3 bg-white/5 p-3 rounded-lg" href="https://download.good-game-service.com/mobile-page/7xl/en">
+<img class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uj_QLjFxT3NqwMOP2YcDjjLj4FvGFPBjUvOnkUAI6Y1BAjqmHXUri7J6zyGHfUAxGCcBoe8cceZqZ6R7YHCUa-L_4qoqtqZCgEjXLWtQylfwlvoi7GWyygq9asagG6xaKAdTqUDd-jqwq07Xt03-h6hcue0gSv5cWTcjE-Roki8qdRd7X1hLHo8QiOwk7PxP8-R4Nq4ehjCmPDQXUTCd6GSCKRxahC2DNyFtYFLkvH0zu0rVceWNzk8rnMzjxV6e2YQ_iVdA_UWWA"/>
+<span class="text-sm">Windows</span>
+</a>
+<a class="flex items-center gap-3 bg-white/5 p-3 rounded-lg" href="https://download.good-game-service.com/mobile-page/7xl/en">
+<img class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uiuJl5Fnilezw4CW0pgWLJjq9nLd2Tvmj9a8O-g4zfDJkU3Gp9eBZMeS73w7H8-WYLDz81S3HWR9uT71nZSd22GM8fi4idOw25DyjW71ATJgSWIjXP8KcxfXND9J-pw5AIeD3MnyJwLJJC6DNv0Rw9s8-ez9cETp61ZdMBMovclmAtvBs2n2B22_Ac0-zuqIy1QU5nQLx3tM7YkmQ1REN51Ce1bnSMPP9jHk3HQhT-xqruhJr8qEq-YPuVcCeC0_9_8Qpo6v3B73sY"/>
+<span class="text-sm">Android</span>
+</a>
+<a class="flex items-center gap-3 bg-white/5 p-3 rounded-lg" href="https://download.good-game-service.com/mobile-page/7xl/en">
+<img class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0uihFxk7cKOXx2QZjUTi06GqLHcuOij4rgdPowAJGESuLxTrYQxyhRKDNi6oeQ9K44WEd1j_GTYRLvXwhYMlk3cQXywji8pQpIsy2Of8s88FMLyG8Qr4uoqsLrPgYeeYh1FASmE2qvscKC0JMEBWImi_Do__T4VhydQIcJoOrult86RmUg5XnPoLQIPNXCbPkyzQ6AJD1WS74KevNjBtYJYer1bvwPhAEIT7YXiN3KM5CaKSM1dQyaWJ45iNSaw4RggqO-0ZfG2hMv8"/>
+<span class="text-sm">iOS iPhone</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-auto space-y-3 pt-6 border-t border-white/10">
+<a class="block w-full bg-[#EF3737] text-white py-4 headline-font font-bold text-center" href="https://7xlagents.com/registration/?agent=ag1230" target="_blank">הרשמה עכשיו</a>
+<button class="w-full border border-white/20 text-white py-4 headline-font font-bold">התחברות</button>
+</div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 z-50 w-full bg-[#131313]/95 backdrop-blur-md px-4 py-3 flex justify-between items-center shadow-lg transition-colors duration-300">
+<div class="flex items-center gap-3">
+<button class="text-white p-1" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<a class="text-xl font-bold tracking-tighter text-[#EF3737] headline-font" href="#">7XL Premium</a>
+</div>
+<div class="flex items-center gap-2">
+<a class="bg-[#25D366] text-black w-10 h-10 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform" href="https://wa.me/972553021464" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>
+</a>
+<a class="bg-[#EF3737] text-white px-5 py-2 headline-font font-bold text-sm tracking-tight active:scale-95 transition-all" href="https://7xlagents.com/registration/?agent=ag1230" target="_blank">הרשמה</a>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center pt-16 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10"></div>
+<img alt="High stakes professional poker" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB_hAc3p3rHoJyCTdXrKcJo15fPCH7o3z-eo9R0zIpCXSfj4GHhXqQjPZqc26c9o2x2Mo2rQ_irZJTPGHSRdwP54l6f66lipTRQKy1sTpLgCguXTZASH4hfgI7uofOVN-V6682j9oz43r9HP4LYwv8ADXvcBNZnpVIZalSkk7mdKdXD28YOYY5SmYbkZWRZj_cXbfv8qHURSP0LH3QOubC7oVxiLs_2h6zODdq-uztgXcJuF7G6HSWYSgfzWcQaIhbaJaSNjtbi-KO"/>
+</div>
+<div class="container mx-auto px-6 relative z-20 pt-10">
+<div class="max-w-xl space-y-6">
+<h1 class="text-5xl font-bold headline-font leading-[1.1] tracking-tighter">
+<span class="block text-white">7XL PREMIUM</span>
+<span class="text-[#EF3737] block">ULTIMATE POKER</span>
+</h1>
+<p class="text-lg text-secondary/90 font-light leading-relaxed">
+                    חווית פוקר אקסקלוסיבית, מהירות שיא ואבטחה מקסימלית בסטנדרטים הגבוהים בעולם.
+                </p>
+<div class="flex flex-col gap-4 pt-4">
+<a class="bg-[#EF3737] text-white py-4 headline-font font-bold text-center text-lg active:scale-95 transition-transform premium-btn-glow" href="https://7xlagents.com/registration/?agent=ag1230" target="_blank">
+                        הצטרפו עכשיו
+                    </a>
+<a class="border border-white/20 text-white py-4 headline-font font-bold text-center text-lg active:bg-white/5 transition-colors" href="#VIP-Club-Section">
+                        מידע נוסף
+                    </a>
+</div>
+<!-- Download Buttons Positioned Below -->
+<div class="pt-8 space-y-4">
+<p class="text-xs text-center text-white/50 font-bold headline-font uppercase tracking-widest">הורדה זמינה לכל המכשירים</p>
+<div class="flex flex-col gap-3 max-w-[240px] mx-auto"><a class="flex items-center justify-center transition-all active:scale-95" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="Windows Store" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhC4c9TRBNYsoJ1uON-Hr2qiILT3nxNR6Jvjti2blzAdJN-3LAshFbiFflu3NFaIPLEIGBCIbWbxB0X-_xDhfx7AqJBsnjMKU7rtPMbv-_V4x5EULvc5-yIVLzICeGF2SEuDEbvhL3vXXy-MF_XMugxxi367tWgv6gwtnj5y8JNeOubwQJtHBHfK7Pn7rZB1eFlHF5bXSS6-tZSRIsOUJHv2OuEcokQBxEYuu9sGOnbsF4jeyd9HE8GWnnqBXdC_Iwq-PNPSvJBtw"/></a><a class="flex items-center justify-center transition-all active:scale-95" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="Google Play" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhhUoUP928C1Iy_xu-D54w6zILTflnGYoalN_GHukrQVjM3dgTs9_CXhtJrxUYJOAT0WfQZviK6pDSlQqa7mCLLUQ0kN4G0IBaVJuidkKAMTSHjtiMEFOMpPn_mWmCZz9PagXL8L3-EA0seoS5ApjPSa9mUM_STlWdeczitCWq1xpUzTNfhBXMxlM3Gc2Cb4X36ouYxge70h2RICa376Bukn1xTEgWenO3utTj-guDKWlhssIa3IevU0gfEHGGWIapb2yFggpXVYtY"/></a><a class="flex items-center justify-center transition-all active:scale-95" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="App Store" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ui3bEKsN7mP_hKSmlKPvqqeYPSllsEZq_3Iw1sBVqXydTB6yjfo2yDtzmx3MDL8AKljDwssoSProC-_yUsTFuEesH3Z8u9HWKwS2iBWw14w13KpmK7eIveqmb64_jxOCXKRZk36TsOgNSZ9VXrDtoYactxAXvvSAqzxgcBvwR4bJeXH2007Qh4PUua6AvLZRVpCFLoyMj4SfZP63Ssv-tANjy9ySOY5VSCipduDxj2822iwmtmIeFR3byD5LZb9DUAG8V6SEHC6Dug"/></a></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Mobile -->
+<section class="py-16 bg-surface-container-lowest border-y border-white/5">
+<div class="container mx-auto px-6 space-y-8">
+<div class="bg-surface p-8 border border-white/5 relative overflow-hidden text-center">
+<span class="material-symbols-outlined text-[#EF3737] text-5xl mb-4 block">bolt</span>
+<h3 class="text-xl font-bold headline-font mb-2 uppercase">Maximum Speed</h3>
+<p class="text-secondary text-sm">הזרמת נתונים המבטיחה משחק חלק ללא השהיות.</p>
+</div>
+<div class="bg-surface p-8 border border-white/5 relative overflow-hidden text-center">
+<span class="material-symbols-outlined text-[#EF3737] text-5xl mb-4 block">shield</span>
+<h3 class="text-xl font-bold headline-font mb-2 uppercase">Military Security</h3>
+<p class="text-secondary text-sm">הצפנה מתקדמת השומרת על הכסף שלך בטוח 24/7.</p>
+</div>
+<div class="bg-surface p-8 border border-white/5 relative overflow-hidden text-center">
+<span class="material-symbols-outlined text-[#EF3737] text-5xl mb-4 block">support_agent</span>
+<h3 class="text-xl font-bold headline-font mb-2 uppercase">24/7 Support</h3>
+<p class="text-secondary text-sm">צוות מומחים זמין עבורך מסביב לשעון לכל בקשה.</p>
+</div>
+</div>
+</section>
+<!-- Games Selection -->
+<section class="py-20 bg-background">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<span class="text-[#EF3737] headline-font tracking-[0.2em] uppercase text-xs font-bold">The Lobby</span>
+<h2 class="text-4xl font-bold headline-font mt-2 tracking-tighter text-white">OUR GAMES</h2>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<div class="group relative aspect-[16/9] overflow-hidden bg-surface-container-low">
+<img alt="Tournaments" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9TIuKO33otf6IwCjdEckp0kL-qKe13TwmjP1TUR80uD8vDf2eFxzjKP2msxbSugGqpBGm_yY8IhOAApinwXX4WgJUf2vIxMnHTSMOuEvFjpV1NE6hOWGI82X7pHPjNoYcJ01B3k3i9zgrveaYJMzCqfahI3bpBYlt1kfwYtB1vsPKXgT7mZRl6CLBeA3u0LBI7Z3XRJO_dAiUqioqU1SrynbgDPbyD3PsWQBqOtACotJTggvnq2lXNmtgzu1KUdyx2MHSDlc-1ODI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 p-6 w-full text-right">
+<h4 class="text-xl font-bold headline-font text-white">Tournaments</h4>
+<p class="text-xs text-secondary mt-1">טורנירים יומיים עם פרסים מובטחים</p>
+</div>
+</div>
+<div class="group relative aspect-[16/9] overflow-hidden bg-surface-container-low">
+<img alt="Rush Cash" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6i8GmDuau_7R7y52O81moLf_TOXQFFkKw0saceUN2N0r3EQOTABAfllXq6n3dgCryATsomWOI3YG4o7BWJcj90uBqPolt_awmdei39EFPQhRRfrE-__fSwIAN7wxUiLEpqC0oBSJilgU7m89jTZDVC0J1SGay8J5jjruiw2pb1X32bKiqziESGfy8ufjb7mlThWYRT6F9pnRTNomW8fI7_jjccrWoGcQxSlwUKXQVFTvxrQuUxlBQZv58cCbxfI9gOXbFQFm85fof"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 p-6 w-full text-right">
+<h4 class="text-xl font-bold headline-font text-white">Rush &amp; Cash</h4>
+<p class="text-xs text-secondary mt-1">אקשן ללא הפסקה במהירות שיא</p>
+</div>
+</div>
+<div class="group relative aspect-[16/9] overflow-hidden bg-surface-container-low">
+<img alt="Texas Holdem" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBYpb4fvLTdhkHrP7rdgUwwp_zeXW_ex4843FNSoHE9m43AhWErXk3fk4U7AoPTTIxx28WClvJn30xs6REufSuvuYgEFO3S3RrbPHgJNeKicmesdrFyGPFLVEEJLxhVY63T7GiXbyP4SzvLUb2jsyZ9JQpjqBsj9sTyaN6xSEh4am8i0umj9QEfYgNk13JoTHyNKptgyloo5BzEpz961J1GGabDhM9UxczlF6p4MuiculYGgoqccE42ePy99S2DPl_NmHySdhQQ7on"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 p-6 w-full text-right">
+<h4 class="text-xl font-bold headline-font text-white">Texas Hold'em</h4>
+<p class="text-xs text-secondary mt-1">הקלאסיקה הנצחית בשולחנות High Stakes</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- VIP Club Section Mobile -->
+<section class="py-20 bg-[#0e0e0e] relative overflow-hidden" id="VIP-Club-Section">
+<div class="absolute inset-0 diagonal-pattern opacity-10"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="space-y-8 text-center">
+<span class="text-[#e9c400] headline-font tracking-[0.2em] uppercase text-xs font-bold">Exclusive Membership</span>
+<h2 class="text-5xl font-bold headline-font tracking-tighter text-white">VIP CLUB</h2>
+<div class="relative group mx-auto max-w-[280px]">
+<div class="absolute -inset-1 bg-gradient-to-r from-[#e9c400] to-transparent opacity-30 blur-2xl"></div>
+<img alt="VIP Card" class="relative z-10 w-full shadow-2xl rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRVqQW142Hx447ldkSUoh8-T0TvlRplECq3LQptlfxvEKih4E2Hvq2mlP0b7ZPad3kRuCjoAHF0KV_s4yNDV-Qu_JycZCGLRv-uMls2pbvGgscM8b1Cn-BhzxZpZvoUyiCZspZhuOm8dqj5eDQZFDIE8IfqYdF7r_KnPvb8x8gKeogfc4-MKvDNS-c4STB6F0O2uvLfQyfXj62MTEbhlXfeLfzxLLDolRffmD-R5_XDcuAnK5xnsPuJrDuSzl2xCY_TVn8KQfHPFXu"/>
+</div>
+<p class="text-lg text-secondary/90 leading-relaxed font-light px-2">
+                    הצטרפו למועדון היוקרה ותיהנו מהטבות ששמורות רק למקצוענים. אנחנו מתגמלים נאמנות ביד רחבה.
+                </p>
+<div class="flex flex-col gap-4 max-w-sm mx-auto text-right">
+<div class="flex items-center justify-end gap-3 text-white bg-white/5 p-4 border-r-2 border-[#e9c400]">
+<span class="text-sm">מנהל חשבון אישי זמין 24/7</span>
+<span class="material-symbols-outlined text-[#e9c400] text-xl">verified</span>
+</div>
+<div class="flex items-center justify-end gap-3 text-white bg-white/5 p-4 border-r-2 border-[#e9c400]">
+<span class="text-sm">החזרי Rakeback גבוהים במיוחד</span>
+<span class="material-symbols-outlined text-[#e9c400] text-xl">payments</span>
+</div>
+</div>
+<a class="inline-block w-full bg-gradient-to-r from-[#e9c400] to-[#c9a900] text-[#4c3f00] py-4 headline-font font-extrabold text-lg shadow-xl active:brightness-110" href="https://wa.me/972553021464" target="_blank">
+                    להצטרפות למועדון ה-VIP
+                </a>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-16 bg-background">
+<div class="container mx-auto px-6">
+<div class="text-center mb-10">
+<h2 class="text-3xl font-bold headline-font mb-4 text-white uppercase tracking-tighter">What Our Players Say</h2>
+<div class="h-1 w-16 bg-[#EF3737] mx-auto"></div>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container p-6 border-r-4 border-[#EF3737]">
+<div class="flex text-[#EF3737] mb-3">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-md italic mb-4 text-white">"הטורנירים ב-7XL Premium הם ברמה הכי גבוהה שיש. מרגישים שהשחקנים כאן הם באמת VIP."</p>
+<span class="block font-bold headline-font text-white text-sm">— אביב ש.</span>
+</div>
+<div class="bg-surface-container p-6 border-r-4 border-[#EF3737]">
+<div class="flex text-[#EF3737] mb-3">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-md italic mb-4 text-white">"חווית משחק מטורפת. האפליקציה בטלפון עובדת חלק לגמרי, ממליץ בחום לכל מי שאוהב פוקר."</p>
+<span class="block font-bold headline-font text-white text-sm">— עידן מ.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Registration Section -->
+<section class="py-16 bg-surface-container-lowest relative overflow-hidden">
+<div class="container mx-auto px-6 relative z-10">
+<div class="bg-surface p-8 border border-[#EF3737]/30 velvet-glow">
+<div class="space-y-6 text-center">
+<h2 class="text-3xl font-bold headline-font text-white flex items-center justify-center gap-2">
+<span>פתיחת חשבון חדש</span>
+<span class="material-symbols-outlined text-[#EF3737] text-3xl">person_add</span>
+</h2>
+<p class="text-secondary text-sm leading-relaxed px-2">
+                        הירשמו עכשיו דרך מערכת הסוכנים ותהנו מחבילת הטבות VIP בלעדית ומשיכות ללא עמלות.
+                    </p>
+<div class="bg-black/60 p-6 border border-white/10 space-y-6">
+<div class="relative">
+<label class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2 font-bold">Referral Code / קוד סוכן</label>
+<div class="flex items-stretch">
+<input class="w-full bg-black/40 border border-[#EF3737]/40 text-[#EF3737] py-3 headline-font font-bold text-xl tracking-widest focus:ring-0 focus:outline-none text-center" readonly="" type="text" value="ag1230"/>
+<div class="bg-[#EF3737] text-white px-3 flex items-center font-bold text-[10px] uppercase shimmer vertical-text">VIP</div>
+</div>
+</div>
+<a class="block w-full bg-[#EF3737] text-white py-4 headline-font font-extrabold text-lg active:scale-[0.98] transition-transform text-center shadow-lg" href="https://7xlagents.com/registration/?agent=ag1230" target="_blank">
+                            מעבר לטופס הרשמה
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-16 bg-background">
+<div class="container mx-auto px-4 grid grid-cols-1 gap-4">
+<a class="bg-surface p-8 flex flex-col items-center text-center space-y-3 border border-white/5 active:bg-white/5 transition-colors" href="tel:0553021464">
+<span class="material-symbols-outlined text-[#EF3737] text-5xl">call</span>
+<h3 class="text-lg font-bold headline-font text-white opacity-60 uppercase">Line 1</h3>
+<span class="text-2xl font-extrabold headline-font text-white">055-302-1464</span>
+</a>
+<a class="bg-surface p-8 flex flex-col items-center text-center space-y-3 border border-white/5 active:bg-white/5 transition-colors" href="tel:0553021466">
+<span class="material-symbols-outlined text-[#EF3737] text-5xl">call</span>
+<h3 class="text-lg font-bold headline-font text-white opacity-60 uppercase">Line 2</h3>
+<span class="text-2xl font-extrabold headline-font text-white">055-302-1466</span>
+</a>
+</div>
+</section>
+<!-- Footer Mobile Optimized -->
+<footer class="bg-[#0e0e0e] border-t border-white/10 pt-16 pb-8">
+<div class="container mx-auto px-6 text-center">
+<div class="mb-12">
+<h2 class="text-2xl font-bold headline-font text-white mb-8">הורדת האפליקציה</h2>
+<div class="flex flex-col gap-4 max-w-[200px] mx-auto"><a class="active:scale-95 transition-transform flex justify-center" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="Windows Store" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhC4c9TRBNYsoJ1uON-Hr2qiILT3nxNR6Jvjti2blzAdJN-3LAshFbiFflu3NFaIPLEIGBCIbWbxB0X-_xDhfx7AqJBsnjMKU7rtPMbv-_V4x5EULvc5-yIVLzICeGF2SEuDEbvhL3vXXy-MF_XMugxxi367tWgv6gwtnj5y8JNeOubwQJtHBHfK7Pn7rZB1eFlHF5bXSS6-tZSRIsOUJHv2OuEcokQBxEYuu9sGOnbsF4jeyd9HE8GWnnqBXdC_Iwq-PNPSvJBtw"/></a><a class="active:scale-95 transition-transform flex justify-center" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="Google Play" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhhUoUP928C1Iy_xu-D54w6zILTflnGYoalN_GHukrQVjM3dgTs9_CXhtJrxUYJOAT0WfQZviK6pDSlQqa7mCLLUQ0kN4G0IBaVJuidkKAMTSHjtiMEFOMpPn_mWmCZz9PagXL8L3-EA0seoS5ApjPSa9mUM_STlWdeczitCWq1xpUzTNfhBXMxlM3Gc2Cb4X36ouYxge70h2RICa376Bukn1xTEgWenO3utTj-guDKWlhssIa3IevU0gfEHGGWIapb2yFggpXVYtY"/></a><a class="active:scale-95 transition-transform flex justify-center" href="https://download.good-game-service.com/mobile-page/7xl/en" target="_blank"><img alt="App Store" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ui3bEKsN7mP_hKSmlKPvqqeYPSllsEZq_3Iw1sBVqXydTB6yjfo2yDtzmx3MDL8AKljDwssoSProC-_yUsTFuEesH3Z8u9HWKwS2iBWw14w13KpmK7eIveqmb64_jxOCXKRZk36TsOgNSZ9VXrDtoYactxAXvvSAqzxgcBvwR4bJeXH2007Qh4PUua6AvLZRVpCFLoyMj4SfZP63Ssv-tANjy9ySOY5VSCipduDxj2822iwmtmIeFR3byD5LZb9DUAG8V6SEHC6Dug"/></a></div>
+</div>
+<div class="flex justify-center gap-6 mb-12">
+<a class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-full active:scale-90 transition-transform" href="https://facebook.com/your-link" target="_blank">
+<img alt="Facebook" class="w-6 h-6 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhPkfq6GvwQORvyYKfMB3k5ok4mPJNNOCnZK-bbqAw8FdUQYYtD9z4RXVaGEa5QVue790FQwWtenaBoqjD3ezm0vEaGEhGFW_CrLMUtQfWqPGQu-SIaLhl1ivY2rd3M3pZEMnFSclaSphG43nPhmmkOj9XSO2FMhomfVWJclM2ea4HfhJB3hyk_4cLCmwkTN_iaTQusXUd7SfyokUePGaaFSVxfKDC0uBZSgP9PxbBZpRlFJ0b6KquG0AuQ1SvF5vQdsdnCyEz-2g"/>
+</a>
+<a class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-full active:scale-90 transition-transform" href="https://instagram.com/your-link" target="_blank">
+<img alt="Instagram" class="w-6 h-6 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugCP9dQNVaFtylbqAWMqhT0afvA1hCxj9gaX4RjgzeuycpJ23qYnsYowEPPTZ5CzTaDAy0hfL0d69XmuzWGU5gyppFSFoyMxOFUvoeh9LFo9tHcwz60HN46P8IwJorowfIvi_cYlT3Fd2hx_YlCrLTWQ1sViSj5sk_f2wBMQc-tpmsAoLGlQ_MX1HYgqNZZpz90qiP6eE2FI7haAdC8y7dOsNYlRaiWek5Y5PrCpNT_N179JJf3-Cd0tqlNUfs2qSZ02uInQUAWJmo"/>
+</a>
+<a class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-full active:scale-90 transition-transform" href="#" target="_blank">
+<img alt="X" class="w-6 h-6 object-contain rounded-full" src="https://lh3.googleusercontent.com/aida/ADBb0ujHpfRnGeqUdH4VJCWq288qe0gGMK3yrGavPmOyIc0_7AI7x8gL_T_q5X2OFwfh8GlfpG23MegAILW4KynlzO-D1-wImdVLx9_Yor499cZoyfvZEFdfiuR2C-J5K-YzQJgHwlLi_TqKR8wWtzryaVTqolO0zWguqQrP6jk9hIz4L08T8f6PhI5LrmATtxIeQoTQU_eOsd4xHdNs4xgOSnVKkz7ox53otZiTL8RNPyH89YCsEFsRwljRGKDtKrOjs1RmdG-6_cUeKS8"/>
+</a>
+<a class="w-12 h-12 flex items-center justify-center bg-[#25D366]/10 border border-[#25D366]/30 rounded-full active:scale-90 transition-transform" href="https://wa.me/972553021464" target="_blank">
+<img alt="WhatsApp" class="w-6 h-6 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujGZjH5f4Lx9kkyV0nYDAp9dlxty3XSFWluq2o0PR3pwGz5mBRUN0d0BzWaQgtRNv08se7iOChDScqHteTbTNNHBpACFFDz9lJrZga0aKOIKNxhjWjWh1s940NYsjTlcixBkcCLX5ZrJkOKrHXtwwbFVo8dHEtnIiMBqyoxXa98KmBZ3WxSa3KSYfR0qAv9ty4ASZKbu2StN_LWuass0GnjYJ4mH7R3HQ5Rv8KFHISUvxKtV97B3tpTCcuziCcxgOmJxnP5HuAxoR4"/>
+</a>
+</div>
+<div class="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-12 px-4">
+<a class="text-gray-500 text-[10px] uppercase tracking-widest font-bold" href="#">תקנון</a>
+<a class="text-gray-500 text-[10px] uppercase tracking-widest font-bold" href="#">פרטיות</a>
+<a class="text-gray-500 text-[10px] uppercase tracking-widest font-bold" href="#">משחק אחראי</a>
+<a class="text-gray-500 text-[10px] uppercase tracking-widest font-bold" href="#">תמיכה</a>
+</div>
+<p class="text-gray-700 text-[10px] font-body">© 2024 7XL Premium. All rights reserved.<br/>High Stakes Sanctuary.</p>
+</div>
+</footer>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('side-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            if (drawer.classList.contains('closed')) {
+                drawer.classList.remove('closed');
+                overlay.classList.remove('hidden');
+                setTimeout(() => { overlay.classList.add('opacity-100'); }, 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('closed');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+                document.body.style.overflow = '';
+            }
+        }
+        document.getElementById('drawer-overlay').addEventListener('click', toggleDrawer);
+    </script>
+</body></html>
